@@ -39,11 +39,11 @@ Temperature in Celsius: 38.06 C'''
 
 def celsius_to_fahrenheit(cel:float)->float:
     fahrenheit = (cel * 9/5) + 32
-    return fahrenheit
+    return round(fahrenheit,2)
 
 def fahrenheit_to_celsius(fahr:float)->float:
     celsius = (fahr - 32) * 5/9
-    return celsius
+    return round(celsius,2)
 
 def main():
 
@@ -54,31 +54,36 @@ def main():
         print()
 
         #Splits the input string into a temperature value and its unit
-        unit = temp[-1]
-        temp_value = float(temp[temp.find(' ')-1])
+        unit = temp[-1].upper()
+        temp_value = float(temp[0:temp.find(' ')])
 
-        if unit != 'C' or unit != 'c' or unit != 'F' or unit != 'f':
-            TypeError
+        checkUnit(unit)
 
         #Tries to convert the input temperature to its opposite unit using the appropriate function
-        if unit == 'C' or 'c':
+        if unit == 'C':
             print(f'Temperature in Fahrenheit:{celsius_to_fahrenheit(temp_value)} F')
-        elif unit == 'F' or 'f':
+            print()
+        elif unit == 'F':
             print(f'Temperature in Celsius:{fahrenheit_to_celsius(temp_value)} C')
+            print()
 
     except ValueError:
         print('You entered an invalid value!! Please enter the temprature value as an integer number!')
         print()
         main()
 
-    except TypeError:
-        print('You entered an invalid unit!! Please enter the temprature unit as C or c for celsius , F or f for Fahrenheit !')
+    except TypeError as e:
+        print(e)
         print()
         main()
 
     else:
 
          print('the conversion is successful')
+
+def  checkUnit(char:str):
+    if char != 'C' and char != 'F':
+        raise TypeError('You entered an invalid unit!! Please enter the temprature unit as C or c for celsius , F or f for Fahrenheit !')
 
 main()
 
