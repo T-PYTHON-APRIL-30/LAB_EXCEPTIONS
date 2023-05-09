@@ -69,3 +69,33 @@ Temperature in Celsius: 38.06 C
 ```
 
 '''
+
+def celsius_to_fahrenheit(celsius : str):
+    celsius = int(celsius)
+    return (celsius * 9/5) + 32, "F"
+
+def fahrenheit_to_celsius(fahrenheit):
+    fahrenheit = int(fahrenheit)
+    return (fahrenheit - 32) * 5/9, "C"
+
+def main():
+    temperature : tuple = tuple(input("please enter a temperature and its unit as (25 C or 77 F): ").split(" "))
+    tempValue, tempUnit = temperature
+    print(tempValue, tempUnit)
+    try:
+            
+        if tempUnit.upper() == "C":
+            tempValue, tempUnit = celsius_to_fahrenheit(tempValue)
+        elif tempUnit.upper() == "F":
+            tempValue, tempUnit = fahrenheit_to_celsius(tempValue)
+        else:
+            raise TypeError
+        print(tempValue, tempUnit)
+    except ValueError:
+        print("the input invalid please enter number")
+    except TypeError:
+        print("the unit is uncorrect")
+    
+    
+
+main()
