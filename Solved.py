@@ -9,3 +9,6 @@ try:
     print("the operation is successful")
 except NameError:
     print("some variable is not defined")
+
+else:
+    print("the operation is successful without error")
